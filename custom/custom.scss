@@ -11,6 +11,7 @@
   section.present {
     background: linear-gradient(180deg, transparentize($white, 0.5), $white);
     border-radius: 0.5rem;
+    padding: 1ch;
   }
   img.featured {
     height: 500px;
@@ -41,5 +42,10 @@
   h2 img {
     max-height: 1em;
     @extend img.borderless;
+  }
+  img.mockup {
+    height: 525px;
+    border: none;
+    border-radius: 25px;
   }
 }

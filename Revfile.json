@@ -3,7 +3,7 @@
     "author": "Quinn Daley",
     "options": {
         "theme": "white",
-        "transition": "slide",
+        "transition": "fade",
         "controls": true,
         "progress": true,
         "history": true,
