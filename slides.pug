@@ -36,12 +36,14 @@ section
       | want to turn without knowing their route in advance (as we do for buses).
   section
     h2 Initiating a journey
+    img.mockup(src='img/mockup-route.jpg')
     aside.notes
       | Once a user has picked a route, they can hit the start button to get 
       | going. The app can confirm their GPS is working and that they are near
       | the start location.
   section
     h2 On approach to a signal
+    img.mockup(src='img/mockup-signal.jpg')
     aside.notes
       | When a user approaches a signal, it activates the geofence and sends
       | the appropriate data to the SmartCycling server, which in turn converts
@@ -52,6 +54,7 @@ section
       | each signal will only be passed once.
   section
     h2 Feedback in the app
+    img.mockup(src='img/mockup-feedback.jpg')
     aside.notes
       | The app can tell people which signals it detected in time to send the
       | prioritization signal. This information should be generated and stored
@@ -59,12 +62,14 @@ section
       | routes.
   section
     h2 Auto-ending journey
+    img.mockup(src='img/mockup-done.jpg')
     aside.notes
       | If the user passes the last signal, or doesn't pass a signal for a set
       | time (e.g. 1 hour) then it could mark the route as complete. Users
       | could also have a stop button.
   section
     h2 Record mode
+    img.mockup(src='img/mockup-record.jpg')
     aside.notes
       | Adding new routes should be possible with a "record mode". This could
       | record which signals a user passes while cycling a new route, and then
@@ -73,6 +78,7 @@ section
       | be hard for a small-scale app.
   section
     h2 Manually editing journeys
+    img.mockup(src='img/mockup-edit.jpg')
     aside.notes
       | Then users can go in and remove inaccurately detected signals, and 
       | change the direction at signals where they are actually going left or
