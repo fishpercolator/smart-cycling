@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Smart Cycling: Prioritization</title>
+  <meta name="description" content="">
+  <meta name="author" content="Quinn Daley">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/white.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Include the appropriate print stylesheet -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    link.media = 'print';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section><h1>Smart Cycling: Prioritization</h1><h2 class="author">Quinn Daley</h2><img class="logo" src="img/logo.png"></section><section><h2>Problems to overcome</h2><ul><li class="fragment">Getting the info early enough</li><li class="fragment">Which direction the cyclist wants to turn</li><li class="fragment">Limit of 100 geofences on Android</li><li class="fragment">Knowing user is a cyclist and not a driver</li><li class="fragment">User experience</li><li class="fragment">Users without Android phones</li></ul></section><section><section><h2>An app design</h2><img class="featured less" src="img/app.jpg"><p>(Press space to advance, and type 's' to read notes)</p></section><section><h2>User registration</h2><img class="mockup" src="img/mockup-signup.jpg"><aside class="notes">Users will need to register to use the app. This ensures that we can 
+identify users who are using the app in a problematic way (e.g. as 
+drivers) and potentially ban them from the platform.</aside></section><section><h2>Pre-drawn routes</h2><img class="mockup" src="img/mockup-routes.jpg"><aside class="notes">In order to understand the direction that users are approaching from
+and which way they want to turn, the app requires users to follow a
+pre-entered route in a specific direction. The app should come with
+several popular commuter routes pre-entered by the council. Although it
+would be possible to automate the process of working out which direction
+a person is approaching a signal, there's no way to know which way they
+want to turn without knowing their route in advance (as we do for buses).</aside></section><section><h2>Initiating a journey</h2><img class="mockup" src="img/mockup-route.jpg"><aside class="notes">Once a user has picked a route, they can hit the start button to get 
+going. The app can confirm their GPS is working and that they are near
+the start location.</aside></section><section><h2>On approach to a signal</h2><img class="mockup" src="img/mockup-signal.jpg"><aside class="notes">When a user approaches a signal, it activates the geofence and sends
+the appropriate data to the SmartCycling server, which in turn converts
+it to UTMC and sends it on to the signal priority system. Information we
+have will include the rider's location, their speed and which direction
+they intend to turn (based on the current route). The app should look 
+for every signal on the route, not just the next one, and assume that
+each signal will only be passed once.</aside></section><section><h2>Feedback in the app</h2><img class="mockup" src="img/mockup-feedback.jpg"><aside class="notes">The app can tell people which signals it detected in time to send the
+prioritization signal. This information should be generated and stored
+server-side so that it can be used for analytics and fixes to broken
+routes.</aside></section><section><h2>Auto-ending journey</h2><img class="mockup" src="img/mockup-done.jpg"><aside class="notes">If the user passes the last signal, or doesn't pass a signal for a set
+time (e.g. 1 hour) then it could mark the route as complete. Users
+could also have a stop button.</aside></section><section><h2>Record mode</h2><img class="mockup" src="img/mockup-record.jpg"><aside class="notes">Adding new routes should be possible with a "record mode". This could
+record which signals a user passes while cycling a new route, and then
+present them with a list of all signals. Maybe it could assume 
+"straight ahead" for all of them as auto-detecting the direction would
+be hard for a small-scale app.</aside></section><section><h2>Manually editing journeys</h2><img class="mockup" src="img/mockup-edit.jpg"><aside class="notes">Then users can go in and remove inaccurately detected signals, and 
+change the direction at signals where they are actually going left or
+right. There would need to be a UI that is aware of all the signal and
+movement codes.</aside></section></section><section><h2>Technical details</h2><ul><li class="fragment">Set up Android geofences when journey begins</li><li class="fragment">Send message to SmartCycling server when entering geofence</li><li class="fragment">Message converted to RTIG-UTMC format including "movement"</li><li class="fragment">App needs to be aware of signal IDs and movement IDs</li><li class="fragment">App can use ActivityRecognitionClient to identify drivers looking to abuse priority</li></ul></section><section><h2>Smallest first step</h2><ul><li class="fragment">Identify popular route</li><li class="fragment">Hardcode that route in both directions</li><li class="fragment">Need signal / movement IDs and geofence radius</li><li class="fragment">Build app with just start/stop and route choice</li><li class="fragment">No feedback / editing</li></ul></section><section><h2>Thanks!</h2><img class="featured" src="img/bike.jpg"></section>
+    </div>
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+  
+  <script>
+    Reveal.initialize({ theme:"white",
+    transition:"fade",
+    controls:true,
+    progress:true,
+    history:true,
+    center:true,
+    dependencies:[ { src:"plugin/markdown/marked.js" },
+      { src:"plugin/markdown/markdown.js" },
+      { src:"plugin/notes/notes.js",
+        async:true } ] });
+  </script>
+</body>
+</html>
